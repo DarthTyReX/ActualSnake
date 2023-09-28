@@ -9,10 +9,12 @@ public class SnakeMovement : MonoBehaviour
 
     List<Transform> segments;         //variable to store all the parts of the body of the snake
     public Transform bodyPrefab;      //Variable to store the body
+   
 
     // Start is called before the first frame update
     void Start()
     {
+       
         segments = new List<Transform>();    //create a new list
         segments.Add(transform);            //add the head of the snake to the list
     }
@@ -45,10 +47,19 @@ public class SnakeMovement : MonoBehaviour
     //FixedUpdate is called at a fix interval
     void FixedUpdate()
     {
+        //move the snake
         this.transform.position = new Vector2(                          //get the position
             Mathf.Round(this.transform.position.x) + direction.x,       //round the number add value to X
             Mathf.Round(this.transform.position.y) + direction.y        //round the number add value to Y
             );
+
+        //move to body of the snake
+        for(int i = segments.Count - 1; i > 0; i--)                    //for each segment of the snake
+        {
+            segments[i].position = segments[i - 1].position;            //move the body
+        }
+
+
     }
     //Function to make the snake grow
     void Grow()
