@@ -74,7 +74,11 @@ public class SnakeMovement : MonoBehaviour
     {
         if(other.tag == "Food" )
         {
-
+            Grow();
+        }
+        else if (other.tag == "Lose")  
+        {
+            Debug.Log("Hit");
         }
     }
 }
